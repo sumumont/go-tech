@@ -1,0 +1,27 @@
+# This is a yaml document
+apiPrefix:
+  v1Group: /api/v1
+
+httpServer:
+  network: "tcp"
+  addr: "8000"
+  readTimeout: "1s"
+  writeTimeout: "1s"
+
+httpClient:
+  maxIdleConns: 100
+  maxConnsPerHost: 100
+  maxIdleConnsPerHost: 100
+  timeoutSeconds: 60
+
+dbConfig:
+  serverType: postgres
+  host: 127.0.0.1
+  port: 5432
+  username: "postgres"
+  password: "postgres"
+  database: "postgres"
+#  sslmode: "require"
+  maxOpenConns: 10
+  maxIdleConns: 2
+  debug: true

@@ -33,11 +33,12 @@ type AppConfig struct {
 	HttpClient HttpClient
 }
 type HTTPServer struct {
-	Network string `yaml:"network"`
-	Addr    string `yaml:"addr"`
+	Network string
+	Addr    string
 }
 
 type DbConfig struct {
+	ServerType      string
 	Username        string
 	Password        string
 	Host            string
@@ -49,6 +50,7 @@ type DbConfig struct {
 	ConnMaxIdleTime int
 	Debug           bool
 	Sslmode         string
+	DbPing          int
 }
 
 type HttpClient struct {

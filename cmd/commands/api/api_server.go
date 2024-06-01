@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"github.com/spf13/cobra"
 	"go-tech/internal/configs"
+	"go-tech/internal/dao/db"
 	"go-tech/internal/logging"
 	"go-tech/internal/routers"
 	"net/http"
@@ -13,11 +14,6 @@ import (
 	"os/signal"
 	"syscall"
 	"time"
-)
-
-const (
-	ver   = "v0.0.1"
-	appid = "go-tech"
 )
 
 var apiServerCmd = &cobra.Command{
@@ -34,7 +30,11 @@ func AddApi(root *cobra.Command) {
 
 func apiServer() {
 	ctx := context.Background()
-	_ = configs.InitConfig(ctx)
+	err := configs.InitConfig(ctx)
+	err = db.InitDb(ctx)
+	if err != nil {
+		panic(err)
+	}
 	httpSrv := startHttpServer(ctx)
 	// signal
 	quit := make(chan os.Signal)
